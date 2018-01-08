@@ -1,0 +1,37 @@
+import RPi.GPIO  as GPIO
+import time
+
+
+pin1 = 20
+pin2 = 21
+
+print("\033[1;31;47m                       PYTHON RELAY TIMER                  ")
+print("\033[0;37;40m \n")
+print("\033[1;35;40m                      BY:  Zahraa & Shahad \n")
+print("\033[0;37;40m \n")
+
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(pin1, GPIO.OUT)
+GPIO.setup(pin2, GPIO.OUT)
+
+try:
+    x=raw_input('Enter Delay Time:')
+    z = float(x)
+except ValueError:
+    print "Not a number"
+print "You Have Chosen  " + x + "  Seconds Delay \n"
+print "Press CTRL+C to Exit \n"
+
+try:
+
+  while 1:
+   GPIO.output(pin1, GPIO.LOW)
+   GPIO.output(pin2, GPIO.HIGH)
+   time.sleep(z)
+   GPIO.output(pin1, GPIO.HIGH)
+   GPIO.output(pin2, GPIO.LOW)
+   time.sleep(z)
+
+except KeyboardInterrupt:
+   GPIO.cleanup()
